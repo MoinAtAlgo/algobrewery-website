@@ -1708,6 +1708,20 @@ body {
   justify-content: center;
   margin: 0 auto 20px;
   color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.team-avatar img:hover {
+  transform: scale(1.05);
 }
 
 .team-card h3 {
@@ -2733,8 +2747,8 @@ body {
   }
 
   .blog-post-card {
-    height: 450px;
-    min-height: 450px;
+    height: 420px;
+    min-height: 420px;
   }
 
   .read-more-link {
@@ -2861,7 +2875,7 @@ body {
     width: 100%;
     max-width: none;
     height: auto;
-    min-height: 420px;
+    min-height: 380px;
     padding: 25px 20px;
   }
 
@@ -2989,8 +3003,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 450px; /* Increased height for better content visibility */
-  min-height: 450px; /* Ensure minimum height */
+  height: 420px; /* Balanced height for desktop */
+  min-height: 420px; /* Ensure minimum height */
   width: 100%;
   max-width: 400px; /* Prevent cards from stretching too wide */
   justify-self: start;
@@ -3009,7 +3023,7 @@ body {
   box-shadow: 0 25px 50px rgba(0, 255, 136, 0.3) !important;
   transition: all 0.4s ease-in-out;
   height: auto !important;
-  min-height: 550px;
+  min-height: 520px;
   width: auto !important;
   max-width: calc(2 * 350px + 30px) !important; /* 2 cards + gap */
 }
@@ -3516,13 +3530,13 @@ body {
   }
   
   .blog-post-card {
-    height: 400px;
-    min-height: 400px;
+    height: 380px;
+    min-height: 380px;
     padding: 20px;
   }
   
   .expanded-card {
-    min-height: 500px;
+    min-height: 480px;
   }
 }
 
