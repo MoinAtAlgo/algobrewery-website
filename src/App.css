@@ -2701,6 +2701,91 @@ body {
   .stat-item {
     text-align: center;
   }
+
+  /* Team member cards tablet fixes */
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 0 30px;
+  }
+
+  .team-card {
+    padding: 35px 25px;
+  }
+
+  .team-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .team-avatar img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Blog cards tablet fixes */
+  .featured-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 0 30px;
+  }
+
+  .blog-post-card {
+    height: 450px;
+    min-height: 450px;
+  }
+
+  .read-more-link {
+    display: block !important;
+    margin-top: 15px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  .read-more-btn {
+    display: block !important;
+    margin-top: 15px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  /* Ensure expand button is always visible on tablet */
+  .read-more-link.expanded {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  /* Ensure expanded content is properly visible on tablet */
+  .expanded-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .expanded-content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Careers cards tablet fixes */
+  .careers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 0 30px;
+  }
+
+  .career-card {
+    padding: 30px 25px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2723,6 +2808,156 @@ body {
   .locations-grid {
     grid-template-columns: 380px;
     justify-content: center;
+  }
+
+  /* Team member cards mobile fixes */
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .team-card {
+    padding: 30px 20px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+
+  .team-avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .team-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .team-card p {
+    font-size: 0.9rem;
+  }
+
+  /* Blog cards mobile fixes */
+  .featured-posts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .all-posts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .blog-post-card {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 420px;
+    padding: 25px 20px;
+  }
+
+  /* Ensure expand buttons are visible in all blog grids */
+  .all-posts-grid .read-more-link,
+  .featured-posts-grid .read-more-link {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  .expanded-card {
+    grid-column: span 1 !important;
+    max-width: 100% !important;
+    min-height: 400px;
+  }
+
+  .read-more-link {
+    display: block !important;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  .read-more-btn {
+    display: block !important;
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  /* Ensure expand button is always visible on mobile */
+  .read-more-link.expanded {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+    background: rgba(0, 255, 136, 0.2) !important;
+    border: 1px solid rgba(0, 255, 136, 0.4) !important;
+    border-radius: 8px !important;
+  }
+
+  /* Ensure expanded content is properly visible */
+  .expanded-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-top: 20px !important;
+  }
+
+  .expanded-content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Careers cards mobile fixes */
+  .careers-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .career-card {
+    padding: 25px 20px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .career-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .career-card p {
+    font-size: 0.9rem;
+  }
+
+  .career-meta {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .career-meta span {
+    font-size: 0.8rem;
   }
 }
 
@@ -2754,8 +2989,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 400px; /* Fixed height for uniform appearance */
-  min-height: 400px; /* Ensure minimum height */
+  height: 450px; /* Increased height for better content visibility */
+  min-height: 450px; /* Ensure minimum height */
   width: 100%;
   max-width: 400px; /* Prevent cards from stretching too wide */
   justify-self: start;
@@ -2774,7 +3009,7 @@ body {
   box-shadow: 0 25px 50px rgba(0, 255, 136, 0.3) !important;
   transition: all 0.4s ease-in-out;
   height: auto !important;
-  min-height: 500px;
+  min-height: 550px;
   width: auto !important;
   max-width: calc(2 * 350px + 30px) !important; /* 2 cards + gap */
 }
@@ -3281,13 +3516,13 @@ body {
   }
   
   .blog-post-card {
-    height: 320px;
-    min-height: 320px;
+    height: 400px;
+    min-height: 400px;
     padding: 20px;
   }
   
   .expanded-card {
-    min-height: 450px;
+    min-height: 500px;
   }
 }
 
