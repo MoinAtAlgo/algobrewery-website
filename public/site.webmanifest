@@ -1,0 +1,25 @@
+{
+  "name": "Algobrewery",
+  "short_name": "Algobrewery",
+  "description": "Engineering Today, Brewing Tomorrow - AI, automation, and next-gen web experiences",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/algobreweryLogo_NoBg.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en",
+  "dir": "ltr"
+}
