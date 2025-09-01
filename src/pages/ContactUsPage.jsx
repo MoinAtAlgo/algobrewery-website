@@ -66,8 +66,84 @@ const ContactUsPage = () => {
     message: ''
   });
   
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
+
+  // Validation functions
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    // Remove all non-digit characters and check for exactly 10 digits
+    const digitsOnly = phone.replace(/\D/g, '');
+    return digitsOnly.length === 10;
+  };
+
+  const validateName = (name) => {
+    // Only alphabets, spaces, and hyphens allowed
+    const nameRegex = /^[a-zA-Z\s\-]+$/;
+    return nameRegex.test(name.trim());
+  };
+
+  const validateRequired = (value, fieldName) => {
+    if (!value || value.trim() === '') {
+      return `${fieldName} is required`;
+    }
+    return null;
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Required field validations
+    const firstNameError = validateRequired(formData.firstName, 'First Name');
+    if (firstNameError) {
+      newErrors.firstName = firstNameError;
+    } else if (!validateName(formData.firstName)) {
+      newErrors.firstName = 'First name should only contain alphabets, spaces, and hyphens. Example: John or Mary-Jane';
+    }
+
+    const lastNameError = validateRequired(formData.lastName, 'Last Name');
+    if (lastNameError) {
+      newErrors.lastName = lastNameError;
+    } else if (!validateName(formData.lastName)) {
+      newErrors.lastName = 'Last name should only contain alphabets, spaces, and hyphens. Example: Smith or O\'Connor';
+    }
+
+    const emailError = validateRequired(formData.email, 'Email');
+    if (emailError) {
+      newErrors.email = emailError;
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address. Example: john.doe@company.com';
+    }
+
+    const phoneError = validateRequired(formData.phone, 'Phone');
+    if (phoneError) {
+      newErrors.phone = phoneError;
+    } else if (!validatePhone(formData.phone)) {
+      newErrors.phone = 'Phone number must be exactly 10 digits. Example: 9876543210';
+    }
+
+    const companyError = validateRequired(formData.company, 'Company');
+    if (companyError) newErrors.company = companyError;
+
+    const projectTypeError = validateRequired(formData.projectType, 'Project Type');
+    if (projectTypeError) newErrors.projectType = projectTypeError;
+
+    const messageError = validateRequired(formData.message, 'Message');
+    if (messageError) newErrors.message = messageError;
+
+    // Message length validation
+    if (formData.message && formData.message.length < 10) {
+      newErrors.message = 'Message must be at least 10 characters long';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const contactMethods = [
     {
@@ -102,10 +178,24 @@ const ContactUsPage = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: null
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -319,10 +409,13 @@ const ContactUsPage = () => {
                     type="text" 
                     id="firstName" 
                     name="firstName" 
+                    placeholder="Enter your first name (alphabets only)"
                     value={formData.firstName}
                     onChange={handleInputChange}
+                    className={errors.firstName ? 'error' : ''}
                     required 
                   />
+                  {errors.firstName && <p className="error-message">{errors.firstName}</p>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="lastName">Last Name *</label>
@@ -330,10 +423,13 @@ const ContactUsPage = () => {
                     type="text" 
                     id="lastName" 
                     name="lastName" 
+                    placeholder="Enter your last name (alphabets only)"
                     value={formData.lastName}
                     onChange={handleInputChange}
+                    className={errors.lastName ? 'error' : ''}
                     required 
                   />
+                  {errors.lastName && <p className="error-message">{errors.lastName}</p>}
                 </div>
               </div>
               
@@ -344,10 +440,13 @@ const ContactUsPage = () => {
                     type="email" 
                     id="email" 
                     name="email" 
+                    placeholder="Enter your email address (e.g., john.doe@company.com)"
                     value={formData.email}
                     onChange={handleInputChange}
+                    className={errors.email ? 'error' : ''}
                     required 
                   />
+                  {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number</label>
@@ -355,9 +454,12 @@ const ContactUsPage = () => {
                     type="tel" 
                     id="phone" 
                     name="phone" 
+                    placeholder="Enter 10-digit phone number (e.g., 9876543210)"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    className={errors.phone ? 'error' : ''}
                   />
+                  {errors.phone && <p className="error-message">{errors.phone}</p>}
                 </div>
               </div>
               
@@ -369,7 +471,9 @@ const ContactUsPage = () => {
                   name="company" 
                   value={formData.company}
                   onChange={handleInputChange}
+                  className={errors.company ? 'error' : ''}
                 />
+                {errors.company && <p className="error-message">{errors.company}</p>}
               </div>
               
               <div className="form-group">
@@ -379,6 +483,7 @@ const ContactUsPage = () => {
                   name="projectType"
                   value={formData.projectType}
                   onChange={handleInputChange}
+                  className={errors.projectType ? 'error' : ''}
                   data-project-type="true"
                 >
                   <option value="">Select a project type</option>
@@ -388,6 +493,7 @@ const ContactUsPage = () => {
                   <option value="consulting">Consulting</option>
                   <option value="other">Other</option>
                 </select>
+                {errors.projectType && <p className="error-message">{errors.projectType}</p>}
               </div>
               
               <div className="form-group">
@@ -399,8 +505,10 @@ const ContactUsPage = () => {
                   placeholder="Tell us about your project, goals, and requirements..."
                   value={formData.message}
                   onChange={handleInputChange}
+                  className={errors.message ? 'error' : ''}
                   required
                 ></textarea>
+                {errors.message && <p className="error-message">{errors.message}</p>}
               </div>
               
               <button 
