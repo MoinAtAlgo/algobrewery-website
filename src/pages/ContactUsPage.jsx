@@ -191,11 +191,24 @@ const ContactUsPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    console.log('Form submission attempted');
+    console.log('Current form data:', formData);
+    
     // Validate form before submission
-    if (!validateForm()) {
+    const isValid = validateForm();
+    console.log('Form validation result:', isValid);
+    console.log('Current errors:', errors);
+    
+    if (!isValid) {
+      console.log('Form validation failed, preventing submission');
+      setSubmitStatus('error');
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 3000);
       return;
     }
 
+    console.log('Form validation passed, proceeding with submission');
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -203,15 +216,35 @@ const ContactUsPage = () => {
       // Google Sheets URL
       const googleSheetsUrl = 'https://script.google.com/macros/s/AKfycbyzBAMnOoHGk4RZwEmCZNNcHwj8Fp9ya4HkLIn8oZfOzl0UzZ_ue9NIDOMigV55p9Zh/exec';
       
+      // Double-check that we have valid data before sending
+      if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.company || !formData.projectType || !formData.message) {
+        console.error('Form data validation failed - missing required fields');
+        setSubmitStatus('error');
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 3000);
+        return;
+      }
+
+      // Additional validation checks before sending
+      if (!validateName(formData.firstName) || !validateName(formData.lastName) || !validateEmail(formData.email) || !validatePhone(formData.phone)) {
+        console.error('Form data validation failed - invalid format');
+        setSubmitStatus('error');
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 3000);
+        return;
+      }
+
       // Prepare form data for GET request with query parameters
       const queryParams = new URLSearchParams({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.company,
-        projectType: formData.projectType,
-        message: formData.message,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        company: formData.company.trim(),
+        projectType: formData.projectType.trim(),
+        message: formData.message.trim(),
         timestamp: new Date().toISOString()
       });
 
@@ -372,21 +405,7 @@ const ContactUsPage = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <motion.div 
-                className="form-status success"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <div className="status-icon">✓</div>
-                <div className="status-content">
-                  <h3>Message Sent Successfully!</h3>
-                  <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
-                </div>
-              </motion.div>
-            )}
-
+            {/* Error Status Message */}
             {submitStatus === 'error' && (
               <motion.div 
                 className="form-status error"
@@ -395,8 +414,8 @@ const ContactUsPage = () => {
               >
                 <div className="status-icon">✗</div>
                 <div className="status-content">
-                  <h3>Something went wrong</h3>
-                  <p>Please try again or contact us directly at hr@algobrewery.com</p>
+                  <h3>Please fix the form errors</h3>
+                  <p>Please correct the highlighted fields above before submitting.</p>
                 </div>
               </motion.div>
             )}
@@ -520,6 +539,22 @@ const ContactUsPage = () => {
                 <Send size={20} />
               </button>
             </form>
+
+            {/* Success Status Message */}
+            {submitStatus === 'success' && (
+              <motion.div 
+                className="form-status success"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="status-icon">✓</div>
+                <div className="status-content">
+                  <h3>Message Sent Successfully!</h3>
+                  <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                </div>
+              </motion.div>
+            )}
 
             {/* Fallback Contact Information */}
             {/* <motion.div 

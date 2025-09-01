@@ -2529,9 +2529,10 @@ body {
 
 .locations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 420px));
   gap: 40px;
   margin-top: 60px;
+  justify-content: center;
 }
 
 .location-card {
@@ -2539,8 +2540,13 @@ body {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: 40px 30px;
+  padding: 35px 25px;
   transition: all 0.3s ease;
+  width: 380px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .location-card:hover {
@@ -2553,7 +2559,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .location-header h3 {
@@ -2562,7 +2568,7 @@ body {
 }
 
 .location-details {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .address,
@@ -2573,7 +2579,7 @@ body {
 }
 
 .contact-info {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .contact-item {
@@ -2588,7 +2594,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2598,6 +2604,7 @@ body {
   gap: 8px;
   width: 100%;
   justify-content: center;
+  margin-top: auto;
 }
 
 .get-directions-btn:hover {
@@ -2709,9 +2716,13 @@ body {
     font-size: 2rem;
   }
   
-  .contact-methods-grid,
-  .locations-grid {
+  .contact-methods-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .locations-grid {
+    grid-template-columns: 380px;
+    justify-content: center;
   }
 }
 
