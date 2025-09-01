@@ -2875,7 +2875,7 @@ body {
     width: 100%;
     max-width: none;
     height: auto;
-    min-height: 380px;
+    min-height: 420px;
     padding: 25px 20px;
   }
 
@@ -3530,13 +3530,13 @@ body {
   }
   
   .blog-post-card {
-    height: 380px;
-    min-height: 380px;
+    height: 420px;
+    min-height: 420px;
     padding: 20px;
   }
   
   .expanded-card {
-    min-height: 480px;
+    min-height: 520px;
   }
 }
 
