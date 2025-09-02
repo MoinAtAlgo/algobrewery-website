@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Users, Target, Award, Globe, Heart, Zap } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import LazyImage from '../components/LazyImage';
 
 // 3D Floating Elements Component
 const FloatingElements = () => {
@@ -106,7 +107,7 @@ const AboutUsPage = () => {
     {
       name: "Sindhu Jinukala",
       role: "Software Development Engineer",
-      description: "Crafts scalable APIs, databases, and cloud-native systems that power our applications.",
+      description: "Software Development Engineer skilled in backend development, API design, cloud (AWS), and data processing with strong problem-solving expertise.",
       image: "/team/sindhu-jinukala.jpg"
     },
     {
@@ -118,7 +119,7 @@ const AboutUsPage = () => {
     {
       name: "Vineela Vasana",
       role: "Software Development Engineer",
-      description: "End-to-end developer powering complete digital products.",
+      description: "Software Developer powering dynamic and robust web applications",
       image: "/team/vineela-vasana.jpg"
     }
   ];
@@ -301,10 +302,9 @@ At Algobrewery, we don’t just deliver solutions — we build intelligent syste
                 viewport={{ once: true }}
               >
                 <div className="team-avatar">
-                  <img 
+                  <LazyImage 
                     src={member.image} 
                     alt={member.name}
-                    loading="lazy"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';

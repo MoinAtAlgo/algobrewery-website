@@ -52,6 +52,8 @@ const Navigation = () => {
             alt="Algobrewery Logo" 
             className="nav-logo-img" 
             loading="lazy"
+            decoding="async"
+            fetchpriority="low"
           />
           <span>ALGOBREWERY</span>
         </Link>

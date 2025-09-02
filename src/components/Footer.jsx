@@ -18,7 +18,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="footer-logo">
-              <img src={algobreweryLogo} alt="Algobrewery Logo" className="footer-logo-img" />
+              <img src={algobreweryLogo} alt="Algobrewery Logo" className="footer-logo-img" loading="lazy" decoding="async" />
               <span>ALGOBREWERY</span>
             </div>
             <p className="footer-description">

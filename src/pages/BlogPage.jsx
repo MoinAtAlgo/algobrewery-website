@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, Float } from '@react-three/drei';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, Calendar, User, ArrowRight, Tag, ChevronDown, ChevronUp } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -50,6 +50,7 @@ const FloatingBookElements = () => {
 
 const BlogPage = () => {
   const [expandedPosts, setExpandedPosts] = useState({});
+  const navigate = useNavigate();
 
   const togglePost = (postId) => {
     setExpandedPosts(prev => {
@@ -64,6 +65,10 @@ const BlogPage = () => {
       newState[postId] = !prev[postId];
       return newState;
     });
+  };
+
+  const openPost = (postId) => {
+    navigate(`/blog/${postId}`);
   };
 
   const getCardClassName = (postId) => {
@@ -239,7 +244,7 @@ const BlogPage = () => {
             <p>Our latest insights and thought leadership</p>
           </motion.div>
 
-          <div className="featured-posts-grid">
+          <div className={`featured-posts-grid ${featuredPosts.length === 2 ? 'two-columns' : ''}`}>
             {featuredPosts.map((post, index) => (
               <motion.div 
                 key={post.id}
@@ -277,47 +282,14 @@ const BlogPage = () => {
                   </div>
                   <button 
                     className={`read-more-link ${expandedPosts[post.id] ? 'expanded' : ''}`}
-                    onClick={() => togglePost(post.id)}
+                    onClick={() => openPost(post.id)}
                   >
-                    <span>{expandedPosts[post.id] ? 'Expanded' : 'Read More'}</span>
-                    {expandedPosts[post.id] ? <ChevronUp size={16} /> : <ArrowRight size={16} />}
+                    <span>Read More</span>
+                    <ArrowRight size={16} />
                   </button>
                 </div>
                 
-                {expandedPosts[post.id] && (
-                  <div className="expanded-content">
-                    <div className="expanded-content-grid">
-                      <div className="content-main">
-                        <p>{post.fullContent}</p>
-                      </div>
-                      <div className="content-sidebar">
-                        <div className="post-details">
-                          <div className="detail-item">
-                            <Calendar size={16} />
-                            <span>{post.date}</span>
-                          </div>
-                          <div className="detail-item">
-                            <BookOpen size={16} />
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
-                        <div className="post-tags">
-                          <h4>Tags</h4>
-                          {post.tags.map((tag, tagIndex) => (
-                            <span key={tagIndex} className="post-tag">{tag}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <button 
-                      className="read-less-btn"
-                      onClick={() => togglePost(post.id)}
-                    >
-                      <ChevronUp size={16} />
-                      Read Less
-                    </button>
-                  </div>
-                )}
+                {expandedPosts[post.id] && null}
               </motion.div>
             ))}
           </div>
@@ -376,7 +348,7 @@ const BlogPage = () => {
             )}
           </motion.div>
 
-          <div className="all-posts-grid">
+          <div className={`all-posts-grid ${filteredPosts.length === 2 ? 'two-columns' : ''}`}>
             {filteredPosts.map((post, index) => (
               <motion.div 
                 key={post.id}
@@ -410,43 +382,14 @@ const BlogPage = () => {
                   </div>
                   <button 
                     className="read-more-link"
-                    onClick={() => togglePost(post.id)}
+                    onClick={() => openPost(post.id)}
                   >
-                    <span>{expandedPosts[post.id] ? 'Expanded' : 'Read More'}</span>
-                    {expandedPosts[post.id] ? <ChevronUp size={16} /> : <ArrowRight size={16} />}
+                    <span>Read More</span>
+                    <ArrowRight size={16} />
                   </button>
                 </div>
                 
-                {expandedPosts[post.id] && (
-                  <div className="expanded-content">
-                    <div className="expanded-content-grid">
-                      <div className="content-main">
-                        <p>{post.fullContent}</p>
-                      </div>
-                      <div className="content-sidebar">
-                        <div className="post-details">
-                          <div className="detail-item">
-                            <Calendar size={16} />
-                            <span>{post.date}</span>
-                          </div>
-                          <div className="post-tags">
-                            <h4>Tags</h4>
-                            {post.tags.map((tag, tagIndex) => (
-                              <span key={tagIndex} className="post-tag">{tag}</span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button 
-                      className="read-less-btn"
-                      onClick={() => togglePost(post.id)}
-                    >
-                      <ChevronUp size={16} />
-                      Read Less
-                    </button>
-                  </div>
-                )}
+                {expandedPosts[post.id] && null}
               </motion.div>
             ))}
           </div>

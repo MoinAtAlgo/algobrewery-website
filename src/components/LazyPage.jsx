@@ -11,3 +11,4 @@ const LazyPage = ({ component: Component, ...props }) => {
 
 export default LazyPage;
 
+
