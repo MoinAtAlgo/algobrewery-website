@@ -350,7 +350,7 @@ const CareersPage = () => {
                 </div>
                 <h3>No Current Open Positions</h3>
                 <p>We're not actively hiring at the moment, but we're always looking for exceptional talent to join our team.</p>
-                <p>Feel free to reach out to us at <strong>hr@algobrewery.com</strong> with your resume and a cover letter explaining why you'd like to join us.</p>
+                <p>Feel free to reach out to us at <strong>hr@algobrewery.in</strong> with your resume and a cover letter explaining why you'd like to join us.</p>
                 <p>We'll keep your information on file for future opportunities!</p>
               </motion.div>
             )}
@@ -423,7 +423,7 @@ const CareersPage = () => {
           >
             <h2>Don't See the Right Fit?</h2>
             <p>We're always looking for talented individuals to join our team. Even if you don't see a specific role that matches your skills, we'd love to hear from you!</p>
-            <p>Send your resume to <strong>hr@algobrewery.com</strong> with a cover letter explaining your background, skills, and why you'd like to join Algobrewery. We'll review your application and reach out if there's a potential fit for future opportunities.</p>
+            <p>Send your resume to <strong>hr@algobrewery.in</strong> with a cover letter explaining your background, skills, and why you'd like to join Algobrewery. We'll review your application and reach out if there's a potential fit for future opportunities.</p>
             <p>Your talent might be exactly what we need for upcoming journey!</p>
           </motion.div>
         </div>
