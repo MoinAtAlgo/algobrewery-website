@@ -150,25 +150,25 @@ const ContactUsPage = () => {
       icon: <Mail size={32} />,
       title: "Email Us",
       description: "Send us a message and we'll get back to you within 24 hours.",
-      contact: "hr@algobrewery.com",
+      contact: "hr@algobrewery.in",
       action: "Send Email"
     },
-    {
-      icon: <Phone size={32} />,
-      title: "Call Us",
-      description: "Speak directly with our team during business hours.",
-      contact: "+1 (555) 123-4567",
-      action: "Call Now"
-    }
+    // {
+    //   icon: <Phone size={32} />,
+    //   title: "Call Us",
+    //   description: "Speak directly with our team during business hours.",
+    //   contact: "+1 (555) 123-4567",
+    //   action: "Call Now"
+    // }
   ];
 
   const officeLocations = [
     {
       city: "Hyderabad",
-      address: "HiTech City",
+      // address: "HiTech City",
       cityState: "Hyderabad, Telangana",
-      phone: "+91 9618466316",
-      email: "hr@algobrewery.com"
+      // phone: "+91 9618466316",
+      email: "hr@algobrewery.in"
     }
   ];
 
