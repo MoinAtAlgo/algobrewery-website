@@ -84,12 +84,12 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <Mail size={16} />
-                <span>hr@algobrewery.com</span>
+                <span>hr@algobrewery.in</span>
               </div>
-              <div className="contact-item">
+              {/* <div className="contact-item">
                 <Phone size={16} />
-                <span>+91 9618466316</span>
-              </div>
+                <span>+91 9</span>
+              </div> */}
               <div className="contact-item">
                 <MapPin size={16} />
                 <span>Hyderabad, India</span>
