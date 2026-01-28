@@ -150,7 +150,7 @@ const ContactUsPage = () => {
       icon: <Mail size={32} />,
       title: "Email Us",
       description: "Send us a message and we'll get back to you within 24 hours.",
-      contact: "hr@algobrewery.in",
+      contact: "hr@algobrewery.com",
       action: "Send Email"
     },
     // {
@@ -168,7 +168,7 @@ const ContactUsPage = () => {
       // address: "HiTech City",
       cityState: "Hyderabad, Telangana",
       // phone: "+91 9618466316",
-      email: "hr@algobrewery.in"
+      email: "hr@algobrewery.com"
     }
   ];
 
@@ -616,10 +616,10 @@ const ContactUsPage = () => {
                   <p className="address">{location.address}</p>
                   <p className="city-state">{location.cityState}</p>
                   <div className="contact-info">
-                    <div className="contact-item">
+                    {/* <div className="contact-item">
                       <Phone size={16} />
                       <span>{location.phone}</span>
-                    </div>
+                    </div> */}
                     <div className="contact-item">
                       <Mail size={16} />
                       <span>{location.email}</span>
@@ -661,7 +661,7 @@ const ContactUsPage = () => {
               </div>
             </div>
             <p className="hours-note">
-              * Emergency support available 24/7 for existing clients
+              * Support available 24/7 for existing clients
             </p>
           </motion.div>
         </div>
